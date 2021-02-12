@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Notifications from 'vue-notification'
 import firebase from 'firebase'
 
 Vue.config.productionTip = false
+Vue.use(Notifications)
 
 
 const firebaseConfig = {

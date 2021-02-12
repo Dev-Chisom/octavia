@@ -35,6 +35,8 @@
 import { mapGetters } from 'vuex';
 import firebase from 'firebase';
 import router from '../router';
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -59,14 +61,21 @@ export default {
       } catch (err) {}
     },
     fetchRate: function() {
-      const baseURI =
-        'https://free.currconv.com/api/v7/convert?q=USD_NGN&compact=ultra&apiKey=93db552416821dd6c8ec';
-      this.$http.get(baseURI).then((result) => {
-        result.data.USD_NGN = this.rate;
-        let response = result.request.response;
-        let matches = response.match(/(\d+)/);
-        this.rate = matches[0];
-      });
+      // const baseURI =
+      //   'https://free.currconv.com/api/v7/convert?q=USD_NGN&compact=ultra&apiKey=93db552416821dd6c8ec';
+      axios
+        .get(
+          'https://free.currconv.com/api/v7/convert?q=USD_NGN&compact=ultra&apiKey=93db552416821dd6c8ec'
+        )
+        .then((result) => {
+          result.data.USD_NGN = this.rate;
+          let response = result.request.response;
+          let matches = response.match(/(\d+)/);
+          this.rate = matches[0];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     convertRate() {
       let converted = this.rate * this.searchKey;

@@ -25,7 +25,7 @@
         @keyup="convertRate"
       />
       <h2 class="dashboard__currency-result">
-        That's <span>&#835;{{ result }}</span> in Naira
+        That's <span>&#8358;{{ result }}</span> in Naira
       </h2>
     </div>
   </div>
